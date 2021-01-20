@@ -1,4 +1,3 @@
-
 def mainLog(reason, date, user, time):
     logs = open("./logs/" + date + ".log", "a+")
     logs.write(date + " " + time)
@@ -7,6 +6,7 @@ def mainLog(reason, date, user, time):
     logs.write("Reason: " + reason)
     logs.write("\n----------------------------------\n\n")
     logs.close()
+
 
 def songLog(song, artist, album, type, user, date, time):
     logs = open("./logs/" + date + ".log", "a+")
@@ -21,6 +21,7 @@ def songLog(song, artist, album, type, user, date, time):
     logs.write("\nType: " + type)
     logs.write("\n----------------------------------\n\n")
     logs.close()
+
 
 def OfflineLog(user, date, time):
     logs = open("./logs/" + date + ".log", "a+")
