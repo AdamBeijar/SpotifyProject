@@ -1,8 +1,7 @@
 import spotipy
 from spotipy.oauth2 import *
 import datetime
-import connector
-import writeDebugLog
+from Utility import writeDebugLog, connector
 
 
 def main(date, time, path, year):

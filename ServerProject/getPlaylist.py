@@ -1,6 +1,6 @@
 import spotipy
 from spotipy.oauth2 import *
-import writeDebugLog
+from Utility import writeDebugLog
 
 
 def main(date, time, year, path):

@@ -1,7 +1,7 @@
 import spotipy
 from spotipy.oauth2 import *
-import writeDebugLog as Log
-import getDate as Date
+from Utility import writeDebugLog as Log, getDate as Date
+
 scopeCurrentSong = "user-read-currently-playing"
 scopeRead = "playlist-read-private"
 scopeModify = "playlist-modify-private"

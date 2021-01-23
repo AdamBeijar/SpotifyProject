@@ -1,8 +1,7 @@
 import getCurrentSong
 import getPlaylist
 import addToPlaylist
-import getDate
-import getPath
+from Utility import getDate, getPath
 
 
 def main():

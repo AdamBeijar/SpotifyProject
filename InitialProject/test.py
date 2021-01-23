@@ -1,7 +1,8 @@
 import spotipy
 from spotipy.oauth2 import *
 import datetime
-import connector
+from Utility import connector
+
 songFound = False
 yearPlaylistId = ""
 year = 2020
