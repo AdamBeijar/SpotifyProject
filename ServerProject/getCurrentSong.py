@@ -1,104 +1,83 @@
+import time
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
+from Utility import connector, writeDebugLog
 
 
-# from Utility import connector, writeDebugLog
-
-
-# def main(date, time, path):
-#    scopeCurrentSong = "user-read-currently-playing"
-#    spGetCurrentSong = spotipy.Spotify(auth_manager=spotipy.SpotifyOAuth(client_id='bccad02b357548da8135bc648ec477f4',
-#                                                                         client_secret='36920227d76e4f8c9925832acf638a9c',
-#                                                                         redirect_uri='http://localhost:1234/ForumTest/tabs/test.php',
-#                                                                         scope=scopeCurrentSong, open_browser=True))
-#    user = spGetCurrentSong.me()['id']
-#    x = spGetCurrentSong.currently_playing()
-#    logs = open("./logs/" + date + ".log", "r")
-#    loglines = logs.readlines()
-#    if len(loglines) > 6:
-#        lastSong = loglines[-6].replace("Song: ", "")
-#        lastAlbum = loglines[-4].replace("Album: ", "")
-#        lastAlbum = lastAlbum.replace("\n", "")
-#        lastSong = lastSong.replace("\n", "")
-#        logs.close()
-#    else:
-#        lastSong = ""
-#        lastAlbum = ""
-#    if x is None:
-#        if lastSong == "Offline":
-#            pass
-#        else:
-#            writeDebugLog.OfflineLog(user, date, time)
-#            pass
-#    else:
-#        if x["currently_playing_type"] == "episode":
-#            pass
-#        elif x["currently_playing_type"] == "track":
-#            currentSongName = str(x['item']['name'])
-#            currentArtists = x['item']['artists']
-#            currentAlbum = str(x['item']['album']['name'])
-#            currentType = str(x['item']['type'])
-#            sqlTrackID = str(x['item']['id'])
-#            connector.mycursor.execute(
-#                "SELECT * FROM timeslistened WHERE trackID = '" + sqlTrackID + "';"
-#            )
-#            row_count = connector.mycursor.rowcount
-#            if row_count == 0 and currentType == "track":
-#                sql = "INSERT INTO timeslistened (trackID, timesListened) VALUES ('" + sqlTrackID + "', 1)"
-#                connector.mycursor.execute(sql)
-#                connector.mydb.commit()
-#                writeDebugLog.mainLog("Added " + currentSongName + " to Database", date, user, time)
-#                if lastSong != str(currentSongName):
-#                    writeDebugLog.songLog(currentSongName, currentArtists, currentAlbum, currentType, user, date, time)
-#            else:
-#                if lastSong != str(currentSongName) and currentType == "track":
-#                    sqlTime = "SELECT timesListened FROM timeslistened WHERE trackID = '" + sqlTrackID + "';"
-#                    connector.mycursor.execute(sqlTime)
-#                    timesListened = connector.mycursor.fetchone()
-#                    timesListened = int(timesListened['timesListened'])
-#                    timesListened += 1
-#                    sqlUpdateTime = "UPDATE timeslistened SET timesListened = '" + str(
-#                        timesListened) + "' WHERE trackID = '" + sqlTrackID + "';"
-#                    connector.mycursor.execute(sqlUpdateTime)
-#                    connector.mydb.commit()
-#                    writeDebugLog.mainLog(
-#                        "Updated " + currentSongName + " to " + str(timesListened) + " times listened in Database",
-#                        date, user, time)
-#                    writeDebugLog.songLog(currentSongName, currentArtists, currentAlbum, currentType, user, date, time)
-#                else:
-#                    pass
-#        else:
-#            pass
-class currentSong:
+class songs:
     def __init__(self, client_id, client_secret, redirect):
-        self.scope_current_song = "user-read-currently-playing"
-        self.sp = spotipy.Spotify(
+        scope_current_song = "user-read-currently-playing"
+        sp = spotipy.Spotify(
             auth_manager=spotipy.SpotifyOAuth(client_id=client_id,
                                               client_secret=client_secret,
                                               redirect_uri=redirect,
-                                              scope=self.scope_current_song))
-        self.currently_playing = self.sp.currently_playing()
+                                              scope=scope_current_song))
+        self.currently_playing = sp.currently_playing()
         if self.currently_playing:
             self.song = [self.currently_playing['item']['name'], self.currently_playing['item']['artists'],
                          self.currently_playing['item']['album']['name'],
                          self.currently_playing['item']['type'], self.currently_playing['item']['id']]
+            # self.song[0] is song name, [1] is artists, [2] is album name, [3] is type, [4] is id
         else:
             self.song = None
-        # self.song[0] is song name, [1] is artists, [2] is album name, [3] is type
+        self.user = sp.me()['id']
 
-    def printCurrent(self):
+    def fixArtists(self):
+        fixed_artists = []
+        for artist in self.song[1]:
+            fixed_artists.append(artist['name'])
+        return fixed_artists
+
+    def main(self):
         if self.song:
-            print(str(self.song[0]) + "\n" + str(self.song[2]))
+            if self.checkSongState():
+                writeDebugLog.logs.songLog(self.song[0], self.song[1], self.song[2], self.song[3])
+                connector.mycursor.execute("SELECT * FROM timeslistened WHERE trackID = '" + self.song[4] + "';")
+                row_count = connector.mycursor.rowcount
+                if row_count == 0:
+                    self.addCurrentToDB()
+                else:
+                    self.addOneToCurrentDB()
         else:
-            print("cannot")
+            writeDebugLog.logs.OfflineLog(self.user)
 
-    def addCurrentToDB
+    def addCurrentToDB(self):
+        sql = "INSERT INTO timeslistened (trackID, timesListened) VALUES ('" + self.song[4] + "', 1)"
+        connector.mycursor.execute(sql)
+        connector.mydb.commit()
+        writeDebugLog.logs.mainLog(f"Added {self.song[1]} to the database")
+
+    def addOneToCurrentDB(self):
+        current_times = "SELECT timesListened FROM timeslistened WHERE trackID = '" + self.song[4] + "';"
+        connector.mycursor.execute(current_times)
+        current_listen_times = connector.mycursor.fetchone()
+        current_listen_times = int(current_listen_times['timesListened'])
+        current_listen_times += 1
+        sqlUpdateTime = "UPDATE timeslistened SET timesListened = '" + str(
+            current_listen_times) + "' WHERE trackID = '" + self.song[4] + "';"
+        connector.mycursor.execute(sqlUpdateTime)
+        connector.mydb.commit()
+        writeDebugLog.logs.mainLog(f"Updated {self.song[0]}'s times listened to {current_listen_times}")
+
+    def checkSongState(self):
+        try:
+            if self.getSong() == lastSong.getSong():
+                return False  # Is same song as last, wont update anything
+            else:
+                return True  # Is not same song as last
+        except NameError:  # First song playing with bot
+            return True
+
+    def getSong(self):
+        real_artists = self.fixArtists()
+        return self.song, real_artists
 
 
 accountId = "bccad02b357548da8135bc648ec477f4"
 accountSecret = "36920227d76e4f8c9925832acf638a9c"
 URI = "http://localhost:1234/ForumTest/tabs/test.php"
 
-currentSong = currentSong(accountId, accountSecret, URI)
-currentSong.testMarket()
-# currentSong.printCurrent()
+while True:
+    currentSong = songs(accountId, accountSecret, URI)
+    currentSong.main()
+    lastSong = songs(accountId, accountSecret, URI)
+    time.sleep(20)

@@ -2,22 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a14e650-b593-4e05-a127-bf50a0672d8c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InitialProject/addToPlaylist.py" beforeDir="false" afterPath="$PROJECT_DIR$/InitialProject/addToPlaylist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InitialProject/authenticate.py" beforeDir="false" afterPath="$PROJECT_DIR$/InitialProject/authenticate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InitialProject/connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utility/connector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InitialProject/getCurrentSong.py" beforeDir="false" afterPath="$PROJECT_DIR$/InitialProject/getCurrentSong.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InitialProject/getDate.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utility/getDate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InitialProject/getPath.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utility/getPath.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InitialProject/getPlaylist.py" beforeDir="false" afterPath="$PROJECT_DIR$/InitialProject/getPlaylist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InitialProject/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/InitialProject/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InitialProject/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/InitialProject/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InitialProject/writeDebugLog.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utility/writeDebugLog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServerProject/.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ServerProject/.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerProject/addToPlaylist.py" beforeDir="false" afterPath="$PROJECT_DIR$/ServerProject/addToPlaylist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServerProject/getCurrentSong.py" beforeDir="false" afterPath="$PROJECT_DIR$/ServerProject/getCurrentSong.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerProject/getPlaylist.py" beforeDir="false" afterPath="$PROJECT_DIR$/ServerProject/getPlaylist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerProject/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ServerProject/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utility/getDate.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utility/getDate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utility/writeDebugLog.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utility/writeDebugLog.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +37,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -129,7 +120,7 @@
       <workItem from="1611240946470" duration="197000" />
       <workItem from="1611241145911" duration="12247000" />
       <workItem from="1611323769461" duration="3062000" />
-      <workItem from="1611398534373" duration="2510000" />
+      <workItem from="1611398534373" duration="22365000" />
     </task>
     <servers />
   </component>
@@ -162,6 +153,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SpotifyProject$main.coverage" NAME="main Coverage Results" MODIFIED="1611178708221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SpotifyProject$getCurrentSong.coverage" NAME="getCurrentSong Coverage Results" MODIFIED="1611400202449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ServerProject" />
+    <SUITE FILE_PATH="coverage/SpotifyProject$getCurrentSong.coverage" NAME="getCurrentSong Coverage Results" MODIFIED="1611436808624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ServerProject" />
   </component>
 </project>

@@ -1,55 +1,38 @@
 import datetime
 
 
-def date():
-    currentDateTime = datetime.datetime.now()
-    day = currentDateTime.day
-    month = currentDateTime.month
-    year = currentDateTime.year
-    date = str(year) + "-" + str(month) + "-" + str(day)
-    return date
+class getDate:
+    def __init__(self):
+        self.currentDateTime = datetime.datetime.now()
+        self.day = self.currentDateTime.day
+        self.month = self.currentDateTime.month
+        self.year = self.currentDateTime.year
+        self.hour = self.currentDateTime.hour
+        self.minute = self.currentDateTime.minute
+        self.second = self.currentDateTime.second
 
+    def date(self):
+        date = str(self.year) + "-" + str(self.month) + "-" + str(self.day)
+        return date
 
-def time():
-    currentDateTime = datetime.datetime.now()
-    hour = currentDateTime.hour
-    minute = currentDateTime.minute
-    second = currentDateTime.second
-    time = str(hour) + ":" + str(minute) + ":" + str(second)
-    return time
+    def time(self):
+        time = str(self.hour) + ":" + str(self.minute) + ":" + str(self.second)
+        return time
 
+    def second(self):
+        return self.second
 
-def second():
-    currentDateTime = datetime.datetime.now()
-    second = currentDateTime.second
-    return second
+    def minute(self):
+        return self.minute
 
+    def hour(self):
+        return self.hour
 
-def minute():
-    currentDateTime = datetime.datetime.now()
-    minute = currentDateTime.minute
-    return minute
+    def day(self):
+        return self.day
 
+    def month(self):
+        return self.month
 
-def hour():
-    currentDateTime = datetime.datetime.now()
-    hour = currentDateTime.hour
-    return hour
-
-
-def day():
-    currentDateTime = datetime.datetime.now()
-    day = currentDateTime.day
-    return day
-
-
-def month():
-    currentDateTime = datetime.datetime.now()
-    month = currentDateTime.month
-    return month
-
-
-def year():
-    currentDateTime = datetime.datetime.now()
-    year = currentDateTime.year
-    return year
+    def year(self):
+        return self.year
