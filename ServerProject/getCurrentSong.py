@@ -10,7 +10,8 @@ class songs:
             auth_manager=spotipy.SpotifyOAuth(client_id=client_id,
                                               client_secret=client_secret,
                                               redirect_uri=redirect,
-                                              scope=scope_current_song))
+                                              scope=scope_current_song,
+                                              open_browser=False))
         self.currently_playing = sp.currently_playing()
         if self.currently_playing:
             self.song = [self.currently_playing['item']['name'], self.currently_playing['item']['artists'],
@@ -64,11 +65,17 @@ class songs:
 
     def checkSongState(self):
         try:
-            if self.getSong() == lastSong.getSong():
-                return False  # Is same song as last, wont update anything
+            if not self.song() and not lastSong.song():
+                return False # Both offline, wont update logs
             else:
-                return True  # Is not same song as last
-        except NameError:  # First song playing with bot
+                if lastSong.song:
+                    if self.getSong() == lastSong.getSong():
+                        return False  # Is same song as last, wont update anything
+                    else:
+                        return True  # Is not same song as last, update logs
+                else:
+                    return True # last song offline, current song online, will update logs again
+        except NameError:  # First song playing with bot, updating logs
             return True
 
     def getSong(self):
