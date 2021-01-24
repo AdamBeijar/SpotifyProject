@@ -30,21 +30,24 @@ class songs:
     def main(self):
         if self.song:
             if self.checkSongState():
-                writeDebugLog.logs.songLog(self.song[0], self.song[1], self.song[2], self.song[3])
+                logs = writeDebugLog.logs(self.user)
                 connector.mycursor.execute("SELECT * FROM timeslistened WHERE trackID = '" + self.song[4] + "';")
                 row_count = connector.mycursor.rowcount
                 if row_count == 0:
                     self.addCurrentToDB()
                 else:
                     self.addOneToCurrentDB()
+                logs.songLog(self.song[0], self.fixArtists(), self.song[2])
         else:
-            writeDebugLog.logs.OfflineLog(self.user)
+            logs = writeDebugLog.logs(self.user)
+            logs.OfflineLog(self.user)
 
     def addCurrentToDB(self):
         sql = "INSERT INTO timeslistened (trackID, timesListened) VALUES ('" + self.song[4] + "', 1)"
         connector.mycursor.execute(sql)
         connector.mydb.commit()
-        writeDebugLog.logs.mainLog(f"Added {self.song[1]} to the database")
+        logs = writeDebugLog.logs(self.user)
+        logs.mainLog(f"Added {self.song[0]} to the database")
 
     def addOneToCurrentDB(self):
         current_times = "SELECT timesListened FROM timeslistened WHERE trackID = '" + self.song[4] + "';"
@@ -56,7 +59,8 @@ class songs:
             current_listen_times) + "' WHERE trackID = '" + self.song[4] + "';"
         connector.mycursor.execute(sqlUpdateTime)
         connector.mydb.commit()
-        writeDebugLog.logs.mainLog(f"Updated {self.song[0]}'s times listened to {current_listen_times}")
+        logs = writeDebugLog.logs(self.user)
+        logs.mainLog(f"Updated {self.song[0]}'s times listened to {current_listen_times}")
 
     def checkSongState(self):
         try:
@@ -80,4 +84,4 @@ while True:
     currentSong = songs(accountId, accountSecret, URI)
     currentSong.main()
     lastSong = songs(accountId, accountSecret, URI)
-    time.sleep(20)
+    time.sleep(60)
