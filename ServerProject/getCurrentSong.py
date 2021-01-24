@@ -14,13 +14,17 @@ class songs:
                                               open_browser=False))
         self.currently_playing = sp.currently_playing()
         if self.currently_playing:
-            self.song = [self.currently_playing['item']['name'], self.currently_playing['item']['artists'],
-                         self.currently_playing['item']['album']['name'],
-                         self.currently_playing['item']['type'], self.currently_playing['item']['id']]
-            # self.song[0] is song name, [1] is artists, [2] is album name, [3] is type, [4] is id
+            self.currentType = self.currently_playing['currently_playing_type']
+            if self.currentType == "track":
+                self.song = [self.currently_playing['item']['name'], self.currently_playing['item']['artists'],
+                             self.currently_playing['item']['type'], self.currently_playing['item']['id']]
+                # self.song[0] is song name, [1] is artists, [2] is album name, [3] is type, [4] is id
+            else:
+                self.song = None
         else:
             self.song = None
         self.user = sp.me()['id']
+        self.offline = False
 
     def fixArtists(self):
         fixed_artists = []
@@ -30,52 +34,51 @@ class songs:
 
     def main(self):
         if self.song:
-            if self.checkSongState():
-                logs = writeDebugLog.logs(self.user)
-                connector.mycursor.execute("SELECT * FROM timeslistened WHERE trackID = '" + self.song[4] + "';")
-                row_count = connector.mycursor.rowcount
-                if row_count == 0:
-                    self.addCurrentToDB()
-                else:
-                    self.addOneToCurrentDB()
-                logs.songLog(self.song[0], self.fixArtists(), self.song[2])
+            if self.isTrack():
+                if self.checkSongState():
+                    connector.mycursor.execute("SELECT * FROM timeslistened WHERE trackID = '" + self.song[3] + "';")
+                    row_count = connector.mycursor.rowcount
+                    if row_count == 0:
+                        self.addCurrentToDB()
+                    else:
+                        self.addOneToCurrentDB()
+
+    def isTrack(self):
+        if self.currentType == "track":
+            return True
         else:
-            logs = writeDebugLog.logs(self.user)
-            logs.OfflineLog(self.user)
+            return False
 
     def addCurrentToDB(self):
-        sql = "INSERT INTO timeslistened (trackID, timesListened) VALUES ('" + self.song[4] + "', 1)"
+        sql = "INSERT INTO timeslistened (trackID, timesListened) VALUES ('" + self.song[3] + "', 1)"
         connector.mycursor.execute(sql)
         connector.mydb.commit()
         logs = writeDebugLog.logs(self.user)
-        logs.mainLog(f"Added {self.song[0]} to the database")
+        logs.mainLog(f"Added {self.song[0]} by {self.fixArtists()} to the database")
 
     def addOneToCurrentDB(self):
-        current_times = "SELECT timesListened FROM timeslistened WHERE trackID = '" + self.song[4] + "';"
+        current_times = "SELECT timesListened FROM timeslistened WHERE trackID = '" + self.song[3] + "';"
         connector.mycursor.execute(current_times)
         current_listen_times = connector.mycursor.fetchone()
         current_listen_times = int(current_listen_times['timesListened'])
         current_listen_times += 1
         sqlUpdateTime = "UPDATE timeslistened SET timesListened = '" + str(
-            current_listen_times) + "' WHERE trackID = '" + self.song[4] + "';"
+            current_listen_times) + "' WHERE trackID = '" + self.song[3] + "';"
         connector.mycursor.execute(sqlUpdateTime)
         connector.mydb.commit()
         logs = writeDebugLog.logs(self.user)
-        logs.mainLog(f"Updated {self.song[0]}'s times listened to {current_listen_times}")
+        logs.mainLog(f"Updated {self.song[0]} by {self.fixArtists()}'s times listened to {current_listen_times}")
 
     def checkSongState(self):
         try:
-            if not self.song() and not lastSong.song():
-                return False # Both offline, wont update logs
-            else:
-                if lastSong.song:
-                    if self.getSong() == lastSong.getSong():
-                        return False  # Is same song as last, wont update anything
-                    else:
-                        return True  # Is not same song as last, update logs
+            if lastSong.song:
+                if self.getSong() == lastSong.getSong():
+                    return False  # Is same song as last, wont update anything
                 else:
-                    return True # last song offline, current song online, will update logs again
-        except NameError:  # First song playing with bot, updating logs
+                    return True  # Is not same song as last, update logs
+            else:
+                return True
+        except NameError:
             return True
 
     def getSong(self):
@@ -91,4 +94,4 @@ while True:
     currentSong = songs(accountId, accountSecret, URI)
     currentSong.main()
     lastSong = songs(accountId, accountSecret, URI)
-    time.sleep(60)
+    time.sleep(10)
