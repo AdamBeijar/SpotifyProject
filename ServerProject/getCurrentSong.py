@@ -42,6 +42,12 @@ class songs:
                         self.addCurrentToDB()
                     else:
                         self.addOneToCurrentDB()
+                else:
+                    pass
+            else:
+                pass
+        else:
+            pass
 
     def isTrack(self):
         if self.currentType == "track":
