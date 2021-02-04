@@ -2,13 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a14e650-b593-4e05-a127-bf50a0672d8c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ServerProject/playlist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerProject/.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ServerProject/.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServerProject/getCurrentSong.py" beforeDir="false" afterPath="$PROJECT_DIR$/ServerProject/getCurrentSong.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utility/writeDebugLog.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utility/writeDebugLog.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -121,6 +131,12 @@
       <workItem from="1611524102837" duration="3118000" />
       <workItem from="1611646075742" duration="1241000" />
       <workItem from="1611762477320" duration="680000" />
+      <workItem from="1611926888365" duration="35000" />
+      <workItem from="1611926931677" duration="1198000" />
+      <workItem from="1612004783340" duration="6632000" />
+      <workItem from="1612017308524" duration="1583000" />
+      <workItem from="1612186859454" duration="2996000" />
+      <workItem from="1612378542136" duration="6375000" />
     </task>
     <servers />
   </component>
@@ -154,6 +170,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SpotifyProject$main.coverage" NAME="main Coverage Results" MODIFIED="1611178708221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SpotifyProject$getCurrentSong.coverage" NAME="getCurrentSong Coverage Results" MODIFIED="1611448375748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ServerProject" />
-    <SUITE FILE_PATH="coverage/getCurrentSong_py$getCurrentSong.coverage" NAME="getCurrentSong Coverage Results" MODIFIED="1611526909077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ServerProject" />
+    <SUITE FILE_PATH="coverage/getCurrentSong_py$getCurrentSong.coverage" NAME="getCurrentSong Coverage Results" MODIFIED="1612186879111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ServerProject" />
   </component>
 </project>

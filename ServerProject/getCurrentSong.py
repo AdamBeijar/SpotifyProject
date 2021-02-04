@@ -24,7 +24,6 @@ class songs:
         else:
             self.song = None
         self.user = sp.me()['id']
-        self.offline = False
 
     def fixArtists(self):
         fixed_artists = []
@@ -42,8 +41,6 @@ class songs:
                         self.addCurrentToDB()
                     else:
                         self.addOneToCurrentDB()
-                else:
-                    pass
             else:
                 pass
         else:
@@ -75,7 +72,7 @@ class songs:
         logs = writeDebugLog.logs(self.user)
         logs.mainLog(f"Updated {self.song[0]} by {self.fixArtists()}'s times listened to {current_listen_times}")
 
-    def checkSongState(self):
+    def checkSongState(self):  # True = will update, False = will not update
         try:
             if lastSong.song:
                 if self.getSong() == lastSong.getSong():
@@ -83,9 +80,9 @@ class songs:
                 else:
                     return True  # Is not same song as last, update logs
             else:
-                return True
+                return True  # Last is offline, Will update
         except NameError:
-            return True
+            return True  # Is first song, will update
 
     def getSong(self):
         real_artists = self.fixArtists()
@@ -96,8 +93,14 @@ accountId = "bccad02b357548da8135bc648ec477f4"
 accountSecret = "36920227d76e4f8c9925832acf638a9c"
 URI = "http://localhost:1234/ForumTest/tabs/test.php"
 
+
 while True:
-    currentSong = songs(accountId, accountSecret, URI)
-    currentSong.main()
-    lastSong = songs(accountId, accountSecret, URI)
+    try:
+        currentSong = songs(accountId, accountSecret, URI)
+        currentSong.main()
+        lastSong = songs(accountId, accountSecret, URI)
+    except Exception as Error:
+        errorLog = writeDebugLog.ErrorLogs()
+        errorLog.MainError(Error)
+        pass
     time.sleep(10)

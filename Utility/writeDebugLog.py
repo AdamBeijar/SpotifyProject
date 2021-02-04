@@ -36,3 +36,18 @@ class logs:
         self.logs.write("\nType: Offline")
         self.logs.write("\n----------------------------------\n\n")
         self.logs.close()
+
+
+class ErrorLogs:
+    def __init__(self):
+        date = getDate.getDate()
+        self.date = date.date()
+        self.time = date.time()
+        self.logs = open("./ErrorLogs/" + self.date + ".log", "a")
+        self.logs.write(f"{self.date} {self.time}")
+
+    def MainError(self, error):
+        self.logs.write("\n----------------------------------\n")
+        self.logs.write(f"Error: {error}")
+        self.logs.write("\n----------------------------------\n\n")
+        self.logs.close()
