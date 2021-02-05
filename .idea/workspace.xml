@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a14e650-b593-4e05-a127-bf50a0672d8c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ServerProject/playlist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ServerProject/.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ServerProject/.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerProject/getCurrentSong.py" beforeDir="false" afterPath="$PROJECT_DIR$/ServerProject/getCurrentSong.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utility/writeDebugLog.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utility/writeDebugLog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerProject/getPlaylist.py" beforeDir="false" afterPath="$PROJECT_DIR$/ServerProject/getPlaylist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerProject/playlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/ServerProject/playlist.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +44,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ServerProject/playlist.py" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -62,7 +61,7 @@
       <recent name="C:\Users\a3bei\Desktop\Projects\SpotifyProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.getCurrentSong">
+  <component name="RunManager" selected="Python.playlist">
     <configuration name="getCurrentSong" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="SpotifyProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,6 +106,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="playlist" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="SpotifyProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\a3bei\anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ServerProject" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ServerProject/playlist.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.playlist" />
+      <item itemvalue="Python.getCurrentSong" />
+      <item itemvalue="Python.main" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.getCurrentSong" />
@@ -137,6 +163,7 @@
       <workItem from="1612017308524" duration="1583000" />
       <workItem from="1612186859454" duration="2996000" />
       <workItem from="1612378542136" duration="6375000" />
+      <workItem from="1612540571386" duration="7694000" />
     </task>
     <servers />
   </component>
@@ -168,8 +195,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/playlist_py$playlist.coverage" NAME="playlist Coverage Results" MODIFIED="1612565226771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ServerProject" />
     <SUITE FILE_PATH="coverage/SpotifyProject$main.coverage" NAME="main Coverage Results" MODIFIED="1611178708221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SpotifyProject$getCurrentSong.coverage" NAME="getCurrentSong Coverage Results" MODIFIED="1611448375748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ServerProject" />
     <SUITE FILE_PATH="coverage/getCurrentSong_py$getCurrentSong.coverage" NAME="getCurrentSong Coverage Results" MODIFIED="1612186879111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ServerProject" />
+    <SUITE FILE_PATH="coverage/playlist_py$getCurrentSong.coverage" NAME="getCurrentSong Coverage Results" MODIFIED="1612560101814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ServerProject" />
   </component>
 </project>

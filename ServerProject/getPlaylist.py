@@ -11,11 +11,13 @@ def main(date, time, year, path):
     scopeGetUser = "user-read-private"
     spReadPlaylist = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='bccad02b357548da8135bc648ec477f4',
                                                                client_secret='36920227d76e4f8c9925832acf638a9c',
-                                                               redirect_uri='http://localhost:1234/ForumTest/tabs/test.php',
+                                                               redirect_uri='http://localhost:1234/ForumTest/tabs'
+                                                                            '/test.php',
                                                                scope=scopeRead, open_browser=False))
     spCreatePlaylist = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='bccad02b357548da8135bc648ec477f4',
                                                                  client_secret='36920227d76e4f8c9925832acf638a9c',
-                                                                 redirect_uri='http://localhost:1234/ForumTest/tabs/test.php',
+                                                                 redirect_uri='http://localhost:1234/ForumTest/tabs'
+                                                                              '/test.php',
                                                                  scope=scopeModify, open_browser=False))
     spGetUser = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='bccad02b357548da8135bc648ec477f4',
                                                           client_secret='36920227d76e4f8c9925832acf638a9c',
