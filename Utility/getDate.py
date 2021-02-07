@@ -36,3 +36,7 @@ class getDate:
 
     def year(self):
         return self.year
+
+    def twoWeeksFromNow(self):
+        twoWeeksFromNow = self.currentDateTime.now() + datetime.timedelta(weeks=2)
+        return twoWeeksFromNow.date()
