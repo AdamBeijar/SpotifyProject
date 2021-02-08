@@ -1,15 +1,12 @@
 import spotipy
 from spotipy.oauth2 import *
+import time
 from Utility import connector, writeDebugLog, getDate
 
 
 class playlists:
-    def __init__(self):
-        self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='bccad02b357548da8135bc648ec477f4',
-                                                            client_secret='36920227d76e4f8c9925832acf638a9c',
-                                                            redirect_uri='http://localhost:1234/ForumTest/tabs'
-                                                                         '/test.php',
-                                                            scope="playlist-modify-public", open_browser=False))
+    def __init__(self, sp):
+        self.sp = sp
         self.user = self.sp.me()['id']
         self.playlists = self.sp.current_user_playlists()
         self.getDates = getDate.getDate()
@@ -73,8 +70,8 @@ class playlists:
                     counterIsMax = False
 
     def updateAddedSongs(self, song):
-        if song['dates'].date() < self.getDates.twoWeeksFromNow():
-            if song['timesListened'] < 7:
+        if song['dates'] < self.getDates.twoWeeksFromNow():
+            if song['timesListened'] > 7:
                 self.addedSongs.append((song['trackID']))
 
     def addToPlaylist(self):
@@ -89,7 +86,20 @@ class playlists:
             self.addedSongs.remove(song)
         if len(self.addedSongs) > 0:
             self.sp.playlist_add_items(self.currentID, self.addedSongs)
+            writeDebugLog.logs.mainLog("Added songs to playlist")
 
 
-currentPlaylist = playlists()
-currentPlaylist.main()
+Spotify = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='bccad02b357548da8135bc648ec477f4',
+                                                    client_secret='36920227d76e4f8c9925832acf638a9c',
+                                                    redirect_uri='http://localhost:1234/ForumTest/tabs'
+                                                                 '/test.php',
+                                                    scope="playlist-modify-public", open_browser=False))
+while True:
+    try:
+        currentPlaylist = playlists(Spotify)
+        currentPlaylist.main()
+    except Exception as Error:
+        errorLog = writeDebugLog.ErrorLogs()
+        errorLog.MainError(Error)
+        pass
+    time.sleep(7200)
