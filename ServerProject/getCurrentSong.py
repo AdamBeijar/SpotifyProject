@@ -89,10 +89,9 @@ class songs:
         return self.song, real_artists
 
 
-accountId = "bccad02b357548da8135bc648ec477f4"
-accountSecret = "36920227d76e4f8c9925832acf638a9c"
-URI = "http://localhost:1234/ForumTest/tabs/test.php"
-
+accountId = CLIENT_ID
+accountSecret = CLIENT_SECRET
+URI = REDIRECT_URI
 
 while True:
     try:
