@@ -89,10 +89,9 @@ class playlists:
             writeDebugLog.logs.mainLog("Added songs to playlist")
 
 
-Spotify = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='bccad02b357548da8135bc648ec477f4',
-                                                    client_secret='36920227d76e4f8c9925832acf638a9c',
-                                                    redirect_uri='http://localhost:1234/ForumTest/tabs'
-                                                                 '/test.php',
+Spotify = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
+                                                    client_secret=CLIENT_SECRET,
+                                                    redirect_uri=REDIRECT_URI,
                                                     scope="playlist-modify-public", open_browser=False))
 while True:
     try:
